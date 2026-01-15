@@ -55,7 +55,7 @@ const ResultsDisplay = ({ result, mode, t }) => {
 
                 {/* Official Holidays Details */}
                 <Row
-                    label={`${t.total_official} found(${officialHolidaysList.length})`}
+                    label={`${t.total_official} (${officialHolidaysList.length})`}
                     value={
                         <button
                             onClick={() => setShowOfficial(!showOfficial)}
@@ -79,7 +79,7 @@ const ResultsDisplay = ({ result, mode, t }) => {
 
                 {/* Optional Holidays */}
                 <Row
-                    label={`${t.total_optional} found(${optionalHolidaysList.length})`}
+                    label={`${t.total_optional} (${optionalHolidaysList.length})`}
                     value={
                         <button
                             onClick={() => setShowOptional(!showOptional)}
