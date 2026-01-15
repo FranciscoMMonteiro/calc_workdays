@@ -110,7 +110,7 @@ function App() {
           </button>
         </div>
 
-        <ResultsDisplay result={result} mode={mode} t={t} />
+        <ResultsDisplay result={result} mode={mode} t={t} lang={lang} />
       </div>
 
       <div style={{ textAlign: 'center', marginTop: '3rem', opacity: 0.5, fontSize: '0.8rem' }}>
