@@ -1,3 +1,4 @@
+```javascript
 import React, { useState } from 'react';
 import { format } from 'date-fns';
 import { ChevronDown, ChevronUp } from 'lucide-react';
@@ -6,16 +7,17 @@ const ResultsDisplay = ({ result, mode, t }) => {
     if (!result) return null;
 
     const {
-        startDate,
         endDate,
         calendarDays,
         businessDays,
         weekends,
-        weekdaysHolidays,
-        holidayDetails
+        officialHolidaysOnWeekdays,
+        officialHolidaysList,
+        optionalHolidaysList
     } = result;
 
-    const [showHolidays, setShowHolidays] = useState(false);
+    const [showOfficial, setShowOfficial] = useState(false);
+    const [showOptional, setShowOptional] = useState(false);
 
     return (
         <div className="glass-panel animate-fade-in" style={{ marginTop: '2rem', overflow: 'hidden' }}>
@@ -45,32 +47,63 @@ const ResultsDisplay = ({ result, mode, t }) => {
                     value={weekends}
                 />
                 <Row
-                    label={t.holidays_weekdays}
-                    value={weekdaysHolidays}
+                    label={t.official_holidays}
+                    subLabel={`(${ t.weekends } included in Weekends)`} // Actually we track weekdays only for deduction.
+                    // Let's stick to simple "Holidays (Weekdays)" label style or "Official Holidays"
+                    value={officialHolidaysOnWeekdays}
                 />
+
+                {/* Official Holidays Details */}
                 <Row
-                    label={`${t.total_holidays_found} (${holidayDetails.length})`}
+                    label={`${ t.total_official } found(${ officialHolidaysList.length })`}
                     value={
                         <button
-                            onClick={() => setShowHolidays(!showHolidays)}
+                            onClick={() => setShowOfficial(!showOfficial)}
                             style={{ background: 'none', border: 'none', color: 'var(--primary-color)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', padding: 0, marginLeft: 'auto' }}
                         >
-                            {showHolidays ? t.hide : t.show}
-                            {showHolidays ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                            {showOfficial ? t.hide : t.show}
+                            {showOfficial ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                         </button>
                     }
                 />
-
-                {showHolidays && holidayDetails.length > 0 && (
+                {showOfficial && officialHolidaysList.length > 0 && (
                     <div style={{ padding: '0 1rem 1rem 1rem', background: 'rgba(0,0,0,0.2)' }}>
-                        {holidayDetails.map((h, idx) => (
+                        {officialHolidaysList.map((h, idx) => (
                             <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.4rem 0', borderBottom: '1px solid rgba(255,255,255,0.05)', fontSize: '0.85rem' }}>
                                 <span>{format(h.date, 'P')}</span>
-                                <span style={{ opacity: 0.8 }}>{h.name} {h.onWeekend ? `(${t.weekend})` : ''}</span>
+                                <span style={{ opacity: 0.8 }}>{h.name} {h.onWeekend ? `(${ t.weekend })` : ''}</span>
                             </div>
                         ))}
                     </div>
                 )}
+
+                {/* Optional Holidays */}
+                <Row
+                    label={`${ t.total_optional } found(${ optionalHolidaysList.length })`}
+                    value={
+                        <button
+                            onClick={() => setShowOptional(!showOptional)}
+                            style={{ background: 'none', border: 'none', color: 'var(--secondary-color)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', padding: 0, marginLeft: 'auto' }}
+                        >
+                            {showOptional ? t.hide : t.show}
+                            {showOptional ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                        </button>
+                    }
+                />
+                {showOptional && optionalHolidaysList.length > 0 && (
+                    <div style={{ padding: '0 1rem 1rem 1rem', background: 'rgba(0,0,0,0.2)' }}>
+                        <div style={{ fontSize: '0.8rem', opacity: 0.7, paddingBottom: '0.5rem', fontStyle: 'italic' }}>
+                            {t.optional_holidays}
+                        </div>
+                        {optionalHolidaysList.map((h, idx) => (
+                            <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.4rem 0', borderBottom: '1px solid rgba(255,255,255,0.05)', fontSize: '0.85rem' }}>
+                                <span>{format(h.date, 'P')}</span>
+                                <span style={{ opacity: 0.8 }}>{h.name} {h.onWeekend ? `(${ t.weekend })` : ''}</span>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
             </div>
         </div>
     );
