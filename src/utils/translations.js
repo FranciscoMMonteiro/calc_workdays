@@ -20,7 +20,11 @@ export const translations = {
         show: 'Show',
         hide: 'Hide',
         footer: 'Supports national holidays for major countries.',
-        weekend: 'Weekend'
+        weekend: 'Weekend',
+        official_holidays: 'Official Holidays',
+        optional_holidays: 'Optional/Observance (Working Days)',
+        total_official: 'Official Holidays',
+        total_optional: 'Optional Holidays'
     },
     pt: {
         title: 'WorkDay',
@@ -43,7 +47,11 @@ export const translations = {
         show: 'Mostrar',
         hide: 'Ocultar',
         footer: 'Suporta feriados nacionais para os principais países.',
-        weekend: 'Final de Semana'
+        weekend: 'Final de Semana',
+        official_holidays: 'Feriados Oficiais',
+        optional_holidays: 'Pontos Facultativos / Outros (Dias Úteis)',
+        total_official: 'Feriados Nacionais',
+        total_optional: 'Outros Feriados'
     },
     es: {
         title: 'WorkDay',
@@ -66,7 +74,11 @@ export const translations = {
         show: 'Mostrar',
         hide: 'Ocultar',
         footer: 'Soporta feriados nacionales para los principales países.',
-        weekend: 'Fin de Semana'
+        weekend: 'Fin de Semana',
+        official_holidays: 'Feriados Oficiales',
+        optional_holidays: 'Opcionales / Otros (Laborables)',
+        total_official: 'Feriados Oficiales',
+        total_optional: 'Feriados Opcionales'
     },
     fr: {
         title: 'WorkDay',
@@ -89,7 +101,11 @@ export const translations = {
         show: 'Voir',
         hide: 'Cacher',
         footer: 'Prend en charge les jours fériés nationaux pour les principaux pays.',
-        weekend: 'Week-end'
+        weekend: 'Week-end',
+        official_holidays: 'Jours Fériés Officiels',
+        optional_holidays: 'Optionnel / Autres (Ouvrés)',
+        total_official: 'Jours Fériés',
+        total_optional: 'Jours Optionnels'
     },
     de: {
         title: 'WorkDay',
@@ -112,7 +128,11 @@ export const translations = {
         show: 'Anzeigen',
         hide: 'Verbergen',
         footer: 'Unterstützt nationale Feiertage für wichtige Länder.',
-        weekend: 'Wochenende'
+        weekend: 'Wochenende',
+        official_holidays: 'Offizielle Feiertage',
+        optional_holidays: 'Optionale Feiertage (Arbeitstage)',
+        total_official: 'Offizielle Feiertage',
+        total_optional: 'Optionale Feiertage'
     },
     it: {
         title: 'WorkDay',
@@ -135,7 +155,11 @@ export const translations = {
         show: 'Mostra',
         hide: 'Nascondi',
         footer: 'Supporta le festività nazionali dei principali paesi.',
-        weekend: 'Fine Settimana'
+        weekend: 'Fine Settimana',
+        official_holidays: 'Festività Ufficiali',
+        optional_holidays: 'Facoltativo / Altro (Lavorativi)',
+        total_official: 'Festività Ufficiali',
+        total_optional: 'Festività Facoltative'
     },
     ru: {
         title: 'WorkDay',
@@ -158,7 +182,11 @@ export const translations = {
         show: 'Показать',
         hide: 'Скрыть',
         footer: 'Поддерживает национальные праздники основных стран.',
-        weekend: 'Выходной'
+        weekend: 'Выходной',
+        official_holidays: 'Официальные праздники',
+        optional_holidays: 'Неофициальные (Рабочие дни)',
+        total_official: 'Официальные',
+        total_optional: 'Неофициальные'
     },
     hi: {
         title: 'WorkDay',
@@ -181,7 +209,11 @@ export const translations = {
         show: 'दिखाएं',
         hide: 'छिपाएं',
         footer: 'प्रमुख देशों के राष्ट्रीय अवकाश का समर्थन करता है।',
-        weekend: 'सप्ताहांत'
+        weekend: 'सप्ताहांत',
+        official_holidays: 'आधिकारिक छुट्टियाँ',
+        optional_holidays: 'वैकल्पिक / अन्य',
+        total_official: 'आधिकारिक',
+        total_optional: 'वैकल्पिक'
     }
 };
 
