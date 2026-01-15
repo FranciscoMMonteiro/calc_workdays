@@ -24,10 +24,10 @@ function App() {
 
   const [result, setResult] = useState(null);
 
-  // Removed auto-calculation useEffect as per user request
-  // useEffect(() => {
-  //   calculate();
-  // }, [country, mode, startDate, daysInput, endDate, lang]);
+  // Clear result when inputs change (except language)
+  useEffect(() => {
+    setResult(null);
+  }, [country, mode, startDate, daysInput, endDate]);
 
   const calculate = () => {
     try {
