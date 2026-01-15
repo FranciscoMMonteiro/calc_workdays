@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { format } from 'date-fns';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
-const ResultsDisplay = ({ result, mode }) => {
+const ResultsDisplay = ({ result, mode, t }) => {
     if (!result) return null;
 
     const {
@@ -22,7 +22,7 @@ const ResultsDisplay = ({ result, mode }) => {
             {/* Header Result */}
             <div style={{ padding: '1.5rem', background: 'rgba(99, 102, 241, 0.1)', borderBottom: '1px solid var(--glass-border)' }}>
                 <label className="label" style={{ textAlign: 'center', color: '#a5b4fc' }}>
-                    {mode === 'add' ? 'Result Date' : 'Business Days'}
+                    {mode === 'add' ? t.result : t.result_days}
                 </label>
                 <div style={{ fontSize: '2rem', fontWeight: 700, margin: '0.5rem 0' }}>
                     {mode === 'add' ? format(endDate, 'PPPP') : businessDays}
@@ -32,30 +32,30 @@ const ResultsDisplay = ({ result, mode }) => {
             {/* Detailed Table */}
             <div style={{ display: 'grid', width: '100%', fontSize: '0.95rem' }}>
                 <Row
-                    label="Calendar Days (Inclusive)"
+                    label={t.calendar_days}
                     value={calendarDays}
                 />
                 <Row
-                    label="Business Days"
+                    label={t.total_business_days}
                     value={businessDays}
                     highlight
                 />
                 <Row
-                    label="Weekends"
+                    label={t.weekends}
                     value={weekends}
                 />
                 <Row
-                    label="Holidays (Weekdays)"
+                    label={t.holidays_weekdays}
                     value={weekdaysHolidays}
                 />
                 <Row
-                    label={`Total Holidays found (${holidayDetails.length})`}
+                    label={`${t.total_holidays_found} (${holidayDetails.length})`}
                     value={
                         <button
                             onClick={() => setShowHolidays(!showHolidays)}
                             style={{ background: 'none', border: 'none', color: 'var(--primary-color)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', padding: 0, marginLeft: 'auto' }}
                         >
-                            {showHolidays ? 'Hide' : 'Show'}
+                            {showHolidays ? t.hide : t.show}
                             {showHolidays ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                         </button>
                     }
@@ -66,7 +66,7 @@ const ResultsDisplay = ({ result, mode }) => {
                         {holidayDetails.map((h, idx) => (
                             <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.4rem 0', borderBottom: '1px solid rgba(255,255,255,0.05)', fontSize: '0.85rem' }}>
                                 <span>{format(h.date, 'P')}</span>
-                                <span style={{ opacity: 0.8 }}>{h.name} {h.onWeekend ? '(Weekend)' : ''}</span>
+                                <span style={{ opacity: 0.8 }}>{h.name} {h.onWeekend ? `(${t.weekend})` : ''}</span>
                             </div>
                         ))}
                     </div>

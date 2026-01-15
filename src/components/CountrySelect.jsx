@@ -2,12 +2,12 @@ import React from 'react';
 import { Globe } from 'lucide-react';
 import { SUPPORTED_COUNTRIES } from '../utils/businessDays';
 
-const CountrySelect = ({ value, onChange }) => {
+const CountrySelect = ({ value, onChange, t }) => {
     return (
         <div className="input-group" style={{ marginBottom: '1.5rem' }}>
             <label className="label">
                 <Globe size={16} style={{ display: 'inline', marginRight: '8px', verticalAlign: 'text-bottom' }} />
-                Country
+                {t.country}
             </label>
             <select
                 className="glass-input"

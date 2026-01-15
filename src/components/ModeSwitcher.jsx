@@ -1,7 +1,7 @@
 import React from 'react';
 import { Calendar, Calculator } from 'lucide-react';
 
-const ModeSwitcher = ({ mode, setMode }) => {
+const ModeSwitcher = ({ mode, setMode, t }) => {
     return (
         <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem', background: 'rgba(255,255,255,0.05)', padding: '4px', borderRadius: '12px' }}>
             <button
@@ -10,7 +10,7 @@ const ModeSwitcher = ({ mode, setMode }) => {
                 style={btnStyle(mode === 'add')}
             >
                 <Calculator size={18} style={{ marginRight: '8px' }} />
-                Start + Days
+                {t.start_plus_days}
             </button>
             <button
                 className={`mode-btn ${mode === 'diff' ? 'active' : ''}`}
@@ -18,7 +18,7 @@ const ModeSwitcher = ({ mode, setMode }) => {
                 style={btnStyle(mode === 'diff')}
             >
                 <Calendar size={18} style={{ marginRight: '8px' }} />
-                Date Difference
+                {t.date_diff}
             </button>
         </div>
     );

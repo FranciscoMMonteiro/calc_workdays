@@ -7,9 +7,15 @@ import { addBusinessDays, getBusinessDaysDifference } from './utils/businessDays
 import { format } from 'date-fns';
 import { ArrowRight } from 'lucide-react';
 
+import { translations } from './utils/translations';
+import LanguageSelector from './components/LanguageSelector';
+
 function App() {
-  const [country, setCountry] = useState('US');
-  const [mode, setMode] = useState('add'); // 'add' or 'diff'
+  const [lang, setLang] = useState('pt'); // Defaulting to PT as user requested "Portuguese - BR" first on list? Or keep EN? User "I want to have Portuguese - BR, English...". I'll default to PT.
+  const [country, setCountry] = useState('BR'); // Defaulting to Brazil as well likely.
+  const [mode, setMode] = useState('diff');
+
+  const t = translations[lang] || translations['en'];
 
   // Inputs
   const [startDate, setStartDate] = useState(format(new Date(), 'yyyy-MM-dd'));
@@ -20,7 +26,7 @@ function App() {
 
   useEffect(() => {
     calculate();
-  }, [country, mode, startDate, daysInput, endDate]);
+  }, [country, mode, startDate, daysInput, endDate, lang]);
 
   const calculate = () => {
     try {
@@ -48,57 +54,65 @@ function App() {
 
   return (
     <div className="App">
-      <div className="glass-panel" style={{ maxWidth: '480px', margin: '0 auto', padding: '2rem' }}>
-        <h1>WorkDay</h1>
-        <p style={{ marginBottom: '2rem', opacity: 0.8 }}>Business Days Calculator</p>
+      <div style={{ width: '100%', maxWidth: '480px' }}>
+        <LanguageSelector currentLang={lang} setLang={setLang} />
+      </div>
 
-        <CountrySelect value={country} onChange={setCountry} />
-        <ModeSwitcher mode={mode} setMode={setMode} />
+      <div className="glass-panel" style={{ maxWidth: '480px', margin: '0 auto', padding: '2rem' }}>
+        <h1>{t.title}</h1>
+        <p style={{ marginBottom: '2rem', opacity: 0.8 }}>{t.subtitle}</p>
+
+        <CountrySelect value={country} onChange={setCountry} t={t} />
+        <ModeSwitcher mode={mode} setMode={setMode} t={t} />
 
         <div className="form-content animate-fade-in" key={mode}>
-          <div className="input-group" style={{ marginBottom: '1rem' }}>
-            <label className="label">Start Date</label>
-            <input
-              type="date"
-              className="glass-input"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-            />
-          </div>
 
-          {mode === 'add' ? (
-            <div className="input-group" style={{ marginBottom: '1rem' }}>
-              <label className="label">Working Days to Add</label>
-              <input
-                type="number"
-                className="glass-input"
-                value={daysInput}
-                onChange={(e) => setDaysInput(e.target.value)}
-                placeholder="e.g. 10"
-              />
-            </div>
-          ) : (
-            <div className="input-group" style={{ marginBottom: '1rem' }}>
-              <label className="label">End Date</label>
+          {/* Flex container for side-by-side inputs */}
+          <div style={{ display: 'flex', gap: '1rem', width: '100%' }}>
+            <div className="input-group" style={{ flex: 1, marginBottom: '1rem' }}>
+              <label className="label">{t.start_date}</label>
               <input
                 type="date"
                 className="glass-input"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
               />
             </div>
-          )}
+
+            {mode === 'add' ? (
+              <div className="input-group" style={{ flex: 1, marginBottom: '1rem' }}>
+                <label className="label">{t.working_days_add}</label>
+                <input
+                  type="number"
+                  className="glass-input"
+                  value={daysInput}
+                  onChange={(e) => setDaysInput(e.target.value)}
+                  placeholder="e.g. 10"
+                />
+              </div>
+            ) : (
+              <div className="input-group" style={{ flex: 1, marginBottom: '1rem' }}>
+                <label className="label">{t.end_date}</label>
+                <input
+                  type="date"
+                  className="glass-input"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                />
+              </div>
+            )}
+          </div>
 
           <button className="btn-primary" style={{ width: '100%', marginTop: '1rem' }}>
-            Calculate <ArrowRight size={16} style={{ display: 'inline', marginLeft: '5px' }} />
+            {t.calculate} <ArrowRight size={16} style={{ display: 'inline', marginLeft: '5px' }} />
           </button>
         </div>
 
-        <ResultsDisplay result={result} mode={mode} />
+        <ResultsDisplay result={result} mode={mode} t={t} />
       </div>
 
       <footer style={{ marginTop: '3rem', opacity: 0.5, fontSize: '0.8rem' }}>
-        Supports national holidays for major countries.
+        {t.footer}
       </footer>
     </div>
   );
