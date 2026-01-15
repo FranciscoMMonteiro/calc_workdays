@@ -1,10 +1,24 @@
 
 import React, { useState } from 'react';
 import { format } from 'date-fns';
+import { enUS, ptBR, es, fr, de, it, ru, hi } from 'date-fns/locale';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
-const ResultsDisplay = ({ result, mode, t }) => {
+const locales = {
+    en: enUS,
+    pt: ptBR,
+    es: es,
+    fr: fr,
+    de: de,
+    it: it,
+    ru: ru,
+    hi: hi
+};
+
+const ResultsDisplay = ({ result, mode, t, lang }) => {
     if (!result) return null;
+
+    const currentLocale = locales[lang] || enUS;
 
     const {
         endDate,
@@ -27,7 +41,7 @@ const ResultsDisplay = ({ result, mode, t }) => {
                     {mode === 'add' ? t.result : t.result_days}
                 </label>
                 <div style={{ fontSize: '2rem', fontWeight: 700, margin: '0.5rem 0' }}>
-                    {mode === 'add' ? format(endDate, 'PPPP') : businessDays}
+                    {mode === 'add' ? format(endDate, 'PPPP', { locale: currentLocale }) : businessDays}
                 </div>
             </div>
 
@@ -70,7 +84,7 @@ const ResultsDisplay = ({ result, mode, t }) => {
                     <div style={{ padding: '0 1rem 1rem 1rem', background: 'rgba(0,0,0,0.2)' }}>
                         {officialHolidaysList.map((h, idx) => (
                             <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.4rem 0', borderBottom: '1px solid rgba(255,255,255,0.05)', fontSize: '0.85rem' }}>
-                                <span>{format(h.date, 'P')}</span>
+                                <span>{format(h.date, 'P', { locale: currentLocale })}</span>
                                 <span style={{ opacity: 0.8 }}>{h.name} {h.onWeekend ? `(${t.weekend})` : ''}</span>
                             </div>
                         ))}
@@ -97,7 +111,7 @@ const ResultsDisplay = ({ result, mode, t }) => {
                         </div>
                         {optionalHolidaysList.map((h, idx) => (
                             <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.4rem 0', borderBottom: '1px solid rgba(255,255,255,0.05)', fontSize: '0.85rem' }}>
-                                <span>{format(h.date, 'P')}</span>
+                                <span>{format(h.date, 'P', { locale: currentLocale })}</span>
                                 <span style={{ opacity: 0.8 }}>{h.name} {h.onWeekend ? `(${t.weekend})` : ''}</span>
                             </div>
                         ))}
