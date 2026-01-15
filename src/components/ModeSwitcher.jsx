@@ -5,20 +5,20 @@ const ModeSwitcher = ({ mode, setMode, t }) => {
     return (
         <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem', background: 'rgba(255,255,255,0.05)', padding: '4px', borderRadius: '12px' }}>
             <button
-                className={`mode-btn ${mode === 'add' ? 'active' : ''}`}
-                onClick={() => setMode('add')}
-                style={btnStyle(mode === 'add')}
-            >
-                <Calculator size={18} style={{ marginRight: '8px' }} />
-                {t.start_plus_days}
-            </button>
-            <button
                 className={`mode-btn ${mode === 'diff' ? 'active' : ''}`}
                 onClick={() => setMode('diff')}
                 style={btnStyle(mode === 'diff')}
             >
                 <Calendar size={18} style={{ marginRight: '8px' }} />
                 {t.date_diff}
+            </button>
+            <button
+                className={`mode-btn ${mode === 'add' ? 'active' : ''}`}
+                onClick={() => setMode('add')}
+                style={btnStyle(mode === 'add')}
+            >
+                <Calculator size={18} style={{ marginRight: '8px' }} />
+                {t.start_plus_days}
             </button>
         </div>
     );
