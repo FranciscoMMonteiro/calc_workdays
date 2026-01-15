@@ -1,4 +1,4 @@
-```javascript
+
 import React, { useState } from 'react';
 import { format } from 'date-fns';
 import { ChevronDown, ChevronUp } from 'lucide-react';
@@ -48,14 +48,14 @@ const ResultsDisplay = ({ result, mode, t }) => {
                 />
                 <Row
                     label={t.official_holidays}
-                    subLabel={`(${ t.weekends } included in Weekends)`} // Actually we track weekdays only for deduction.
+                    subLabel={`(${t.weekends} included in Weekends)`} // Actually we track weekdays only for deduction.
                     // Let's stick to simple "Holidays (Weekdays)" label style or "Official Holidays"
                     value={officialHolidaysOnWeekdays}
                 />
 
                 {/* Official Holidays Details */}
                 <Row
-                    label={`${ t.total_official } found(${ officialHolidaysList.length })`}
+                    label={`${t.total_official} found(${officialHolidaysList.length})`}
                     value={
                         <button
                             onClick={() => setShowOfficial(!showOfficial)}
@@ -71,7 +71,7 @@ const ResultsDisplay = ({ result, mode, t }) => {
                         {officialHolidaysList.map((h, idx) => (
                             <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.4rem 0', borderBottom: '1px solid rgba(255,255,255,0.05)', fontSize: '0.85rem' }}>
                                 <span>{format(h.date, 'P')}</span>
-                                <span style={{ opacity: 0.8 }}>{h.name} {h.onWeekend ? `(${ t.weekend })` : ''}</span>
+                                <span style={{ opacity: 0.8 }}>{h.name} {h.onWeekend ? `(${t.weekend})` : ''}</span>
                             </div>
                         ))}
                     </div>
@@ -79,7 +79,7 @@ const ResultsDisplay = ({ result, mode, t }) => {
 
                 {/* Optional Holidays */}
                 <Row
-                    label={`${ t.total_optional } found(${ optionalHolidaysList.length })`}
+                    label={`${t.total_optional} found(${optionalHolidaysList.length})`}
                     value={
                         <button
                             onClick={() => setShowOptional(!showOptional)}
@@ -98,7 +98,7 @@ const ResultsDisplay = ({ result, mode, t }) => {
                         {optionalHolidaysList.map((h, idx) => (
                             <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.4rem 0', borderBottom: '1px solid rgba(255,255,255,0.05)', fontSize: '0.85rem' }}>
                                 <span>{format(h.date, 'P')}</span>
-                                <span style={{ opacity: 0.8 }}>{h.name} {h.onWeekend ? `(${ t.weekend })` : ''}</span>
+                                <span style={{ opacity: 0.8 }}>{h.name} {h.onWeekend ? `(${t.weekend})` : ''}</span>
                             </div>
                         ))}
                     </div>
