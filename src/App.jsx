@@ -24,9 +24,10 @@ function App() {
 
   const [result, setResult] = useState(null);
 
-  useEffect(() => {
-    calculate();
-  }, [country, mode, startDate, daysInput, endDate, lang]);
+  // Removed auto-calculation useEffect as per user request
+  // useEffect(() => {
+  //   calculate();
+  // }, [country, mode, startDate, daysInput, endDate, lang]);
 
   const calculate = () => {
     try {
@@ -103,7 +104,7 @@ function App() {
             )}
           </div>
 
-          <button className="btn-primary" style={{ width: '100%', marginTop: '1rem' }}>
+          <button className="btn-primary" onClick={calculate} style={{ width: '100%', marginTop: '1rem' }}>
             {t.calculate} <ArrowRight size={16} style={{ display: 'inline', marginLeft: '5px' }} />
           </button>
         </div>
