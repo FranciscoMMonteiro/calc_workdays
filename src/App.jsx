@@ -70,7 +70,7 @@ function App() {
         <div className="form-content animate-fade-in" key={mode}>
 
           {/* Flex container for side-by-side inputs */}
-          <div style={{ display: 'flex', gap: '1rem', width: '100%' }}>
+          <div className="date-inputs-container">
             <div className="input-group" style={{ flex: 1, marginBottom: '1rem' }}>
               <label className="label">{t.start_date}</label>
               <input
