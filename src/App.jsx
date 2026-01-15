@@ -6,6 +6,7 @@ import ResultsDisplay from './components/ResultsDisplay';
 import { addBusinessDays, getBusinessDaysDifference } from './utils/businessDays';
 import { format } from 'date-fns';
 import { ArrowRight } from 'lucide-react';
+import { Analytics } from "@vercel/analytics/react"
 
 import { translations } from './utils/translations';
 import LanguageSelector from './components/LanguageSelector';
@@ -112,11 +113,12 @@ function App() {
         <ResultsDisplay result={result} mode={mode} t={t} />
       </div>
 
-      <footer style={{ marginTop: '3rem', opacity: 0.5, fontSize: '0.8rem' }}>
-        {t.footer}
-      </footer>
+      <div style={{ textAlign: 'center', marginTop: '3rem', opacity: 0.5, fontSize: '0.8rem' }}>
+        <p>{t.footer}</p>
+      </div>
+      <Analytics />
     </div>
   );
-}
+};
 
 export default App;
