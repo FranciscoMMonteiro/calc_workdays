@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Main Body -->
+  <rect x="48" y="48" width="416" height="416" rx="96" fill="url(#grad1)" />
+  
+  <!-- Darker Header Section (approximate top 1/3) -->
+  <path d="M48 144 h416 v-40 a96 96 0 0 0 -96 -96 h-224 a96 96 0 0 0 -96 96 v40 z" fill="rgba(0,0,0,0.1)" />
+  
+  <!-- Checkmark -->
+  <path d="M144 272 L224 352 L368 192" fill="none" stroke="white" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Binder Holes -->
+  <circle cx="160" cy="96" r="24" fill="white" fill-opacity="0.9"/>
+  <circle cx="352" cy="96" r="24" fill="white" fill-opacity="0.9"/>
+</svg>
