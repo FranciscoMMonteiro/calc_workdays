@@ -131,7 +131,14 @@ h1 {
 
 @media (max-width: 600px) {
   .date-inputs-container {
-    flex-direction: column;
     gap: 0.5rem;
+    /* reduce gap */
+  }
+
+  .glass-input {
+    padding: 0.8rem 0.5rem;
+    /* reduce padding */
+    font-size: 0.9rem;
+    /* slightly smaller font if needed */
   }
 }
